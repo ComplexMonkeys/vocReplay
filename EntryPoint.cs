@@ -55,12 +55,12 @@ namespace vocReplay
             var baseT = root?.Find("BaseTrans")?.Find("card_deform");
             if (baseT == null) return "";
 
-            var title = baseT.Find("CardTitle")?.GetComponent<TextMeshPro>();
-            var info = baseT.Find("CardInfo")?.GetComponent<TextMeshPro>();
+            var title = baseT.Find("CardTitle")?.GetComponent<TextMeshPro>().GetParsedText().Trim();
+            var info = baseT.Find("CardInfo")?.GetComponent<TextMeshPro>().GetParsedText().Trim();
 
             var sb = new System.Text.StringBuilder();
-            if (title != null) sb.AppendLine("【" + title.GetParsedText().Trim() + "】");
-            if (info != null) sb.Append(info.GetParsedText().Trim());
+            if (title != null && title != "") sb.AppendLine("【" + title + "】");
+            if (info != null && info != "") sb.Append(info);
             return sb.ToString();
         }
 
@@ -73,12 +73,12 @@ namespace vocReplay
             string titleName = root.localRotation.y > 0 ? "CardTitleBack" : "CardTitleFront";
             string infoName = root.localRotation.y > 0 ? "CardInfoBack" : "CardInfoFront";
 
-            var title = baseT.Find(titleName)?.GetComponent<TextMeshPro>();
-            var info = baseT.Find(infoName)?.GetComponent<TextMeshPro>();
+            var title = baseT.Find(titleName)?.GetComponent<TextMeshPro>().GetParsedText().Trim();
+            var info = baseT.Find(infoName)?.GetComponent<TextMeshPro>().GetParsedText().Trim();
 
             var sb = new System.Text.StringBuilder();
-            if (title != null) sb.AppendLine("【" + title.GetParsedText().Trim() + "】");
-            if (info != null) sb.Append(info.GetParsedText().Trim());
+            if (title != null && title != "") sb.AppendLine("【" + title + "】");
+            if (info != null && info != "") sb.Append(info);
             return sb.ToString();
         }
 
